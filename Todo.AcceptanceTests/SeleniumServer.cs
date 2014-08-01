@@ -43,7 +43,7 @@ namespace Todo.AcceptanceTests
 
         public void Run(Action<ISelenium> test)
         {
-            var browsers = new List<string> { "*googlechrome", "*firefox" };
+            var browsers = new List<string> { /*"*googlechrome",*/ "*firefox" };
             foreach (var browser in browsers)
             {
                 var s = new DefaultSelenium("localhost", 4444, browser, ConfigurationManager.AppSettings["testSite"]);
