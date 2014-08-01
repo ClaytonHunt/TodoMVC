@@ -9,7 +9,7 @@ namespace Todo.UnitTests
         public void Sample()
         {
             var a = 1;
-            Assert.AreEqual(2, a);
+            Assert.AreEqual(1, a);
         }
     }
 }
