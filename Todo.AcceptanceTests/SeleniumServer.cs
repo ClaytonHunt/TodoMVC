@@ -1,5 +1,9 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
+using System.Linq;
+using Selenium;
 
 namespace Todo.AcceptanceTests
 {
@@ -35,6 +39,18 @@ namespace Todo.AcceptanceTests
             _process.Kill();
 
             IsStarted = false;
+        }
+
+        public void Run(Action<ISelenium> test)
+        {
+            var browsers = new List<string> { "*googlechrome", "*firefox" };
+            foreach (var browser in browsers)
+            {
+                var s = new DefaultSelenium("localhost", 4444, browser, ConfigurationManager.AppSettings["testSite"]);
+                s.Start();
+                test(s);
+                s.Stop();
+            }
         }
     }
 }
